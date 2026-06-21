@@ -10,7 +10,7 @@ langchain-community
 langchain
 docker
 autogen-ext[docker]
-streamlit==1.38.0
+streamlit>=1.45.0
 autogen-ext[mcp]
 autogen-ext[ollama]
 flask

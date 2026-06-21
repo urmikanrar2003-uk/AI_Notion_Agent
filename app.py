@@ -1,7 +1,16 @@
 import asyncio
+import os
 import streamlit as st
 
 st.set_page_config(page_title="Notion AI Agent", page_icon="🧠", layout="centered")
+
+# Inject secrets into env so agent_backend can read them via os.getenv
+# (agent_backend must NOT import streamlit to avoid corrupting page init)
+try:
+    if "OPENAI_API_KEY" in st.secrets:
+        os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
+except Exception:
+    pass
 
 from agent_backend import run_agent_stream
 st.title("🧠 AI Notion Agent")

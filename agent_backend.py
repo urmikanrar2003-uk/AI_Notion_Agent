@@ -7,23 +7,13 @@ from autogen_agentchat.conditions import TextMentionTermination
 import os
 import sys
 import shutil
-import streamlit as st
 from dotenv import load_dotenv
 
 load_dotenv()
 
 def get_secret(key):
-    # Try environment variable first
-    val = os.getenv(key)
-    if val:
-        return val
-    # Fallback to Streamlit secrets
-    try:
-        if key in st.secrets:
-            return st.secrets[key]
-    except Exception:
-        pass
-    return None
+    """Read secret from environment variables only."""
+    return os.getenv(key)
 
 
 SYSTEM_MESSAGE = """
