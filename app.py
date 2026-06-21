@@ -1,9 +1,9 @@
 import asyncio
 import streamlit as st
-from agent_backend import run_agent_stream
 
 st.set_page_config(page_title="Notion AI Agent", page_icon="🧠", layout="centered")
 
+from agent_backend import run_agent_stream
 st.title("🧠 AI Notion Agent")
 st.markdown("Interact with your Notion workspace using natural language!")
 
