@@ -11,7 +11,7 @@ To demonstrate my versatility in modern backend architectures and deployment str
 This is a user-friendly, fully hosted web application. It features a beautiful chat interface where end-users can securely input their Notion API Key and interact with their workspace in real-time.
 
 ### How to use:
-1. Go to the live URL: https://ainotionagent-6tbz8f3rnsbwqw3duipyyz.streamlit.app
+1. Go to the live URL: https://ainotionagent-6tbz8f3rnsbwqw3duipyyz.streamlit.app/
 2. Open the **Settings Sidebar** and enter your personal **Notion API Key** (You can get one from [Notion Integrations](https://www.notion.so/my-integrations)).
 3. Start chatting! The agent will execute tasks securely on your behalf.
 
