@@ -26,8 +26,6 @@ def get_secret(key):
     return None
 
 
-openai_api_key = get_secret("OPENAI_API_KEY")
-
 SYSTEM_MESSAGE = """
 You are a helpful assistant that can search and summarize 
 content from the user's Notion workspace and also list what is asked.
@@ -52,6 +50,7 @@ async def setup_team(user_notion_key: str):
         read_timeout_seconds=60
     )
 
+    openai_api_key = get_secret("OPENAI_API_KEY")
     model = OpenAIChatCompletionClient(
         model="gpt-4o-mini",
         api_key=openai_api_key )
