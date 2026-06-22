@@ -33,9 +33,9 @@ async def setup_team(user_notion_key: str):
 
     params = StdioServerParams(
         command=npx_command,
-        args=['-y', 'mcp-remote', 'https://mcp.notion.com/mcp'],
+        args=['-y', '@notionhq/notion-mcp-server'],
         env={
-            'NOTION_API_KEY': user_notion_key,
+            'NOTION_TOKEN': user_notion_key,
         },
         read_timeout_seconds=60
     )
