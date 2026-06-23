@@ -10,7 +10,40 @@ This project is a raw REST API designed for developers who want to integrate the
 
 ### Prerequisites
 
-You must use a **Notion OAuth integration token** (starts with `secret_...` or `Bearer...`) in your `.env` file for the agent to have permission to create top-level workspace pages. Internal integration tokens (`ntn_...`) are blocked by Notion's API from creating workspace-level pages.
+You must have a **Notion Integration Token** (e.g. `ntn_...`) added to your `.env` file to grant the agent permission to interact with your workspace.
+
+**How to get your Notion API Key:**
+1. Go to the [Notion Developer Portal (My Integrations)](https://www.notion.so/my-integrations).
+2. Click **New integration**.
+3. Give it a name (e.g., "AI Agent") and select your workspace.
+4. Copy the "Internal Integration Secret" token (`ntn_...`) and paste it into your `.env` file as `NOTION_API_KEY`.
+5. **Crucial Step:** Go to the Notion pages or workspace you want the agent to access, click the `...` menu in the top right, click **Connect to**, and select your new integration.
+
+**How to get your Ngrok Auth Token:**
+1. Create a free account or log in at [Ngrok](https://dashboard.ngrok.com/login).
+2. On your dashboard, navigate to **Getting Started > Your AuthToken** (or go directly to [this link](https://dashboard.ngrok.com/get-started/your-authtoken)).
+3. Copy your Auth Token and paste it into your `.env` file as `NGROK_AUTH_TOKEN`.
+
+### How to use the agent (User-Friendly Interface):
+For the best experience, use the provided Streamlit Web UI.
+
+1. Ensure your backend server is running in a terminal:
+   ```bash
+   python notion_agent_final.py
+   ```
+2. Note the Ngrok URL printed in the terminal (e.g., `https://xyz.ngrok-free.app`).
+3. Open `app.py` and update the `FLASK_URL` variable to match your new Ngrok URL.
+4. Open a second terminal and run the Streamlit app:
+   ```bash
+   streamlit run app.py
+   ```
+5. A browser window will open automatically. Simply type your natural language task (e.g., "Create a new page titled My Next Big Idea") and click **Run Task**.
+
+---
+
+## 🛠️ Developer REST API (Local Tunneled via Ngrok)
+
+If you prefer to integrate the agent programmatically instead of using the UI, you can use the REST API.
 
 ### How to run the API:
 1. Make sure you have your `.env` file configured in the project root:
