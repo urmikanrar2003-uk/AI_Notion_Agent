@@ -8,37 +8,46 @@ This project is a raw REST API designed for developers who want to integrate the
 
 ## 🛠️ Developer REST API (Local Tunneled via Ngrok)
 
+### Prerequisites
+
+You must use a **Notion OAuth integration token** (starts with `secret_...` or `Bearer...`) in your `.env` file for the agent to have permission to create top-level workspace pages. Internal integration tokens (`ntn_...`) are blocked by Notion's API from creating workspace-level pages.
+
 ### How to run the API:
-1. Make sure you have your `.env` file with `OPENAI_API_KEY`, `NOTION_API_KEY`, and `NGROK_AUTH_TOKEN`.
-2. Run the deployment script:
-   ```bash
-   python run_api_ngrok.py
+1. Make sure you have your `.env` file configured in the project root:
+   ```dotenv
+   OPENAI_API_KEY=your_openai_key
+   NOTION_API_KEY=your_oauth_notion_key
+   NGROK_AUTH_TOKEN=your_ngrok_auth_token
    ```
-3. The terminal will provide you with a public Ngrok URL (e.g., `https://xyz.ngrok-free.app/api/chat`).
+2. Run the main server script:
+   ```bash
+   python notion_agent_final.py
+   ```
+3. The terminal will provide you with a public Ngrok URL (e.g., `https://xyz.ngrok-free.app/api/hello`).
 
 ### How to consume the API:
-Send a `POST` request to the generated Ngrok endpoint with your task and Notion key in the JSON body:
+Send a `POST` request to the generated Ngrok endpoint at the `/run` path with your task in the JSON body:
 
 ```bash
-curl -X POST https://[your-ngrok-url]/api/chat \
+curl -X POST https://[your-ngrok-url]/run \
      -H "Content-Type: application/json" \
      -d '{
-           "prompt": "Create a new page titled My Next Big Idea",
-           "notion_api_key": "secret_abc123..."
+           "task": "Create a new page titled My Next Big Idea"
          }'
 ```
 
 **Response:**
 ```json
 {
-  "response": "I have successfully created a new page titled \"My Next Big Idea\". You can access it [here](link)."
+  "status": "sucess",
+  "result": "I have successfully created a new page titled \"My Next Big Idea\"..."
 }
 ```
 
 ### Architecture details:
 - **Framework:** Flask, Asyncio
 - **Tunneling:** PyNgrok
-- **Files used:** `api_server.py`, `run_api_ngrok.py`, `agent_backend.py`
+- **Files used:** `notion_agent_final.py`
 
 ---
 
